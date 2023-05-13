@@ -1,0 +1,35 @@
+.temperature {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+}
+.units {
+  position: relative;
+  top: -34px;
+}
+.weather_icon {
+  height: 64px;
+  width: 64px;
+  margin-right: 10px;
+}
+.float-left {
+  float: left !important;
+}
+
+.container {
+  border: 1px solid #dadde1;
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+}
+
+#city_name {
+  text-transform: capitalize;
+}
