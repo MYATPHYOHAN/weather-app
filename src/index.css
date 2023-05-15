@@ -33,3 +33,8 @@ a {
 #city_name {
   text-transform: capitalize;
 }
+
+.git-link {
+  margin: 0 auto;
+  text-align: center;
+}
