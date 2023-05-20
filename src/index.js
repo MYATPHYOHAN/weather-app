@@ -78,6 +78,8 @@ function showTemperature(response) {
   let humidity = Math.round(response.data.main.humidity);
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${humidity}`;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = `${response.data.weather[0].description}`;
 }
 
 let currentPosition = document.querySelector("#current-button");

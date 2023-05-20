@@ -115,3 +115,7 @@ body {
 .cu-sf::placeholder {
   color: #fff;
 }
+
+#description {
+  text-transform: capitalize;
+}
