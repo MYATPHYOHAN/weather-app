@@ -1,16 +1,21 @@
 html,
 body {
   color: #fff;
-  font-family: Google Sans, sans-serif;
   margin: 0;
 }
-
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+  font-family: "Product Sans", sans-serif;
+}
 .weather-app {
   max-width: 800px;
   padding: 15px;
   margin: 20px auto;
   border-radius: 16px;
-  border: 2px solid grey;
+  border: 1px solid #dadde1;
   background: rgb(140, 96, 149);
   background: linear-gradient(
     0deg,
@@ -18,11 +23,11 @@ body {
     rgba(78, 67, 136, 1) 60%,
     rgba(26, 38, 96, 1) 100%
   );
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .temperature {
-  font-family: Quicksand, sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 48px;
   font-weight: 600;
   letter-spacing: 0;
@@ -79,9 +84,8 @@ body {
   top: 4px;
 }
 
-#search-button,
-#current-button {
-  font-family: Quicksand, sans-serif;
+#search-button {
+  font-family: "Quicksand", sans-serif;
 }
 
 .weather-box {
@@ -127,4 +131,9 @@ body {
 
 #description {
   text-transform: capitalize;
+}
+
+#city-name {
+  font-weight: 400;
+  font-family: "Product Sans", sans-serif;
 }
