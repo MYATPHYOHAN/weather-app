@@ -51,61 +51,64 @@
           </div>
         </div>
       </form>
-      <div class="d-flex flex-column">
-        <h1 id="city-name"></h1>
-        <h3 id="date"></h3>
-        <h4>Today's Weather</h4>
-        <h4></h4>
-        <div class="row">
-          <div class="col-6">
-            <div>
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                alt="Cloudy icon"
-                class="weather-icon float-left"
-              />
-              <div class="float-left">
-                <span class="temperature" id="temperature"></span>
-                <span
-                  class="units"
-                  style="display: inline"
-                  aria-label="°Celsius"
-                  aria-disabled="true"
-                  role="button"
-                  >°C</span
-                >
+      <div class="weather-box">
+        <div class="d-flex flex-column">
+          <h1 id="city-name"></h1>
+          <h3 id="date"></h3>
+          <h4>Today's Weather</h4>
+          <h4></h4>
+          <div class="row">
+            <div class="col-6">
+              <div>
+                <img
+                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                  alt="Cloudy icon"
+                  class="weather-icon float-left"
+                />
+                <div class="float-left">
+                  <span class="temperature" id="temperature"></span>
+                  <span
+                    class="units"
+                    style="display: inline"
+                    aria-label="°Celsius"
+                    aria-disabled="true"
+                    role="button"
+                    >°C</span
+                  >
 
-                <span class="in-line"></span>
+                  <span class="in-line"></span>
 
-                <span
-                  class="units"
-                  style="display: inline; margin-left: -1px"
-                  aria-label="°Fahrenheit"
-                  aria-disabled="true"
-                  role="button"
-                  >°F</span
-                >
+                  <span
+                    class="units"
+                    style="display: inline; margin-left: -1px"
+                    aria-label="°Fahrenheit"
+                    aria-disabled="true"
+                    role="button"
+                    >°F</span
+                  >
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-6">
-            <div>
-              <ul style="list-style: none">
-                <li>Precipitation:<span id="precipitation"></span> 60%</li>
-                <li>Humidity: <span id="humidity"></span>%</li>
-                <li>Wind: <span id="windspeed"></span>m/s</li>
-              </ul>
+            <div class="col-6">
+              <div>
+                <ul style="list-style: none">
+                  <li>Precipitation:<span id="precipitation"></span> 60%</li>
+                  <li>Humidity: <span id="humidity"></span>%</li>
+                  <li>Wind: <span id="windspeed"></span>m/s</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="git-link">
+        <a href="https://github.com/MYATPHYOHAN/weather-app" target="_blank"
+          >Weather App</a
+        >
+        by Myat Phyo Han
+      </div>
     </div>
-    <div class="git-link">
-      <a href="https://github.com/MYATPHYOHAN/weather-app" target="_blank"
-        >Weather App</a
-      >
-      by Myat Phyo Han
-    </div>
+
     <script src="src/index.js"></script>
   </body>
 </html>

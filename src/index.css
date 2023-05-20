@@ -1,27 +1,22 @@
+html,
 body {
+  color: #fff;
   font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: rgb(20, 168, 201);
-  background: linear-gradient(
-    0deg,
-    rgba(20, 168, 201, 1) 30%,
-    rgba(0, 255, 230, 1) 100%
-  );
   background-repeat: no-repeat;
-  margin: 20px auto;
-  max-width: 75%;
+  margin: 0;
 }
 
 .weather-app {
   border: 1px solid #dadde1;
   padding: 15px;
-  margin: 20px auto;
-  width: 80%;
-  background: rgba(255, 255, 255, 0.2);
+  margin: 10px auto;
+  max-width: 800px;
+  background-image: url("/images/cloudy.svg");
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .temperature {
@@ -32,7 +27,6 @@ body {
 }
 
 .units {
-  color: black;
   display: inline-block;
   font-size: 14px;
   line-height: 24px;
@@ -82,7 +76,7 @@ body {
 }
 
 .in-line {
-  border-left: solid 1px #868b90;
+  border-left: solid 1px #fff;
   margin: 0 5px;
   font-weight: normal;
   vertical-align: top;
@@ -91,4 +85,17 @@ body {
 #search-button,
 #current-button {
   font-family: Quicksand, arial, sans-serif;
+}
+
+.weather-box {
+  border: 1px solid #dadde1;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
