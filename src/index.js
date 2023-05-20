@@ -1,40 +1,28 @@
-function currentDate(curretTime) {
-  let dates = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let date = dates[curretTime.getDay()];
-  let hour = curretTime.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  let minute = curretTime.getMinutes();
-  if (minute < 10) {
-    minute = `0${minute}`;
-  }
+function formatDate(timestamp, timezone) {
+  let date = new Date(timestamp * 1000);
+  let timezoneOffsetMinutes = timezone / 60;
 
-  return `${date} ${hour}:${minute}`;
+  date.setMinutes(date.getMinutes() + timezoneOffsetMinutes);
+
+  let options = {
+    weekday: "long",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    timeZone: "UTC",
+  };
+
+  let formattedDate = date.toLocaleString("en-US", options);
+
+  return formattedDate;
 }
-
-let todayDate = document.querySelector("h3");
-let curretTime = new Date();
-todayDate.innerHTML = currentDate(curretTime);
 
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", searchCity);
 
 function searchCity(event) {
   let cityName = document.querySelector("#search-city");
-  let changeCityName = document.querySelector("#city-name");
   event.preventDefault();
-  let inputCityName = cityName.value;
-  let fixCityName = inputCityName;
-  changeCityName.innerHTML = `${fixCityName}`;
   showCity(cityName.value);
   console.log(cityName.value);
 }
@@ -69,21 +57,43 @@ function showCity(cityName) {
 
 function showTemperature(response) {
   console.log(response.data);
-  let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `${temperature}`;
-  let windSpeed = Math.round(response.data.wind.speed);
   let windSpeedElement = document.querySelector("#windspeed");
-  windSpeedElement.innerHTML = `${windSpeed}`;
-  let humidity = Math.round(response.data.main.humidity);
   let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = `${humidity}`;
   let descriptionElement = document.querySelector("#description");
-  descriptionElement.innerHTML = `${response.data.weather[0].description}`;
+  let todayDateElement = document.querySelector("#date");
+  let cityElement = document.querySelector("#city-name");
+
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  windSpeedElement.innerHTML = Math.round(response.data.wind.speed / 3.6);
+  humidityElement.innerHTML = Math.round(response.data.main.humidity);
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  todayDateElement.innerHTML = formatDate(
+    response.data.dt,
+    response.data.timezone
+  );
+
+  loadCountryCodes()
+    .then((countryCodes) => {
+      const countryName = countryCodes[response.data.sys.country] || "Unknown";
+      cityElement.innerHTML = `${response.data.name}, ${countryName}`;
+    })
+    .catch((error) => {
+      console.log("Error loading country codes:", error);
+      cityElement.innerHTML = `${response.data.name}, Unknown`;
+    });
 }
 
-let currentPosition = document.querySelector("#current-button");
-currentPosition.addEventListener("click", currentLocation);
+async function loadCountryCodes() {
+  let countryCodeUrl = `https://gist.githubusercontent.com/ssskip/5a94bfcd2835bf1dea52/raw/3b2e5355eb49336f0c6bc0060c05d927c2d1e004/ISO3166-1.alpha2.json`;
+  try {
+    const response = await fetch(countryCodeUrl);
+    return await response.json();
+  } catch (error) {
+    console.log("Error loading country codes:", error);
+    throw error;
+  }
+}
 
 function currentLocation() {
   navigator.geolocation.getCurrentPosition(handleLocation);
@@ -101,3 +111,5 @@ function userLocation(lat, lon) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(showTemperature);
 }
+
+currentLocation();

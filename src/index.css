@@ -1,7 +1,7 @@
 html,
 body {
   color: #fff;
-  font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Google Sans, sans-serif;
   margin: 0;
 }
 
@@ -9,39 +9,42 @@ body {
   max-width: 800px;
   padding: 15px;
   margin: 20px auto;
-  background-image: url("/images/cloudy.svg");
-  background-color: gray;
   border-radius: 16px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: auto;
   border: 2px solid grey;
+  background: rgb(140, 96, 149);
+  background: linear-gradient(
+    0deg,
+    rgba(140, 96, 149, 1) 30%,
+    rgba(78, 67, 136, 1) 60%,
+    rgba(26, 38, 96, 1) 100%
+  );
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .temperature {
-  font-family: Quicksand, arial, sans-serif;
+  font-family: Quicksand, sans-serif;
   font-size: 48px;
   font-weight: 600;
   letter-spacing: 0;
   line-height: 56px;
+  vertical-align: top;
 }
 
 .units {
   display: inline-block;
   padding-left: 6px;
-  vertical-align: top;
   color: rgb(232, 234, 237);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  position: relative;
+  font-size: 16px;
+  top: 4px;
 }
 
 .weather-icon {
   display: inline-block;
   height: auto;
-  margin-top: unset;
-  vertical-align: top;
   width: auto;
   margin-right: 4px;
 }
@@ -59,7 +62,7 @@ body {
 .git-link {
   margin: 0 auto;
   text-align: center;
-  font-family: Quicksand, arial, sans-serif;
+  font-family: Quicksand, sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0;
@@ -73,12 +76,12 @@ body {
 .in-line {
   font-size: small;
   border-left: solid 1px #fff;
-  vertical-align: top;
+  top: 4px;
 }
 
 #search-button,
 #current-button {
-  font-family: Quicksand, arial, sans-serif;
+  font-family: Quicksand, sans-serif;
 }
 
 .weather-box {
@@ -99,6 +102,12 @@ body {
 
 .right-view {
   text-align: right;
+  width: 50%;
+}
+
+.left-view {
+  display: inline-block;
+  width: 50%;
 }
 
 .cu-sf,
