@@ -28,7 +28,7 @@
           <div class="col-6 flex-fill">
             <input
               type="text"
-              class="form-control"
+              class="form-control cu-sf"
               id="search-city"
               placeholder="Enter a city name..."
             />
@@ -53,10 +53,11 @@
       </form>
       <div class="weather-box">
         <div class="d-flex flex-column">
-          <h1 id="city-name"></h1>
-          <h3 id="date"></h3>
-          <h4>Today's Weather</h4>
-          <h4></h4>
+          <div class="general-view">
+            <h1 id="city-name">Hello!</h1>
+            <h3 id="date"></h3>
+            <h4>Today's Weather</h4>
+          </div>
           <div class="row">
             <div class="col-6">
               <div>
@@ -66,7 +67,7 @@
                   class="weather-icon float-left"
                 />
                 <div class="float-left">
-                  <span class="temperature" id="temperature"></span>
+                  <span class="temperature" id="temperature">--</span>
                   <span
                     class="units"
                     style="display: inline"
@@ -75,9 +76,7 @@
                     role="button"
                     >°C</span
                   >
-
                   <span class="in-line"></span>
-
                   <span
                     class="units"
                     style="display: inline; margin-left: -1px"
@@ -89,12 +88,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 right-view">
               <div>
                 <ul style="list-style: none">
-                  <li>Precipitation:<span id="precipitation"></span> 60%</li>
-                  <li>Humidity: <span id="humidity"></span>%</li>
-                  <li>Wind: <span id="windspeed"></span>m/s</li>
+                  <li>Precipitation: <span id="precipitation"></span>60%</li>
+                  <li>Humidity: <span id="humidity"></span>--%</li>
+                  <li>Wind: <span id="windspeed"></span>--m/s</li>
                 </ul>
               </div>
             </div>
