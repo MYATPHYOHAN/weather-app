@@ -40,21 +40,25 @@ function searchCity(event) {
 }
 
 let cel = document.querySelector("#celsius");
-cel.addEventListener("click", changeCel);
+cel.addEventListener("click", changeToCelsius);
 
-function changeCel(event) {
-  let temp = document.querySelector("#temperature");
+function changeToCelsius(event) {
   event.preventDefault();
-  temp.innerHTML = ``;
+  let tempElement = document.querySelector("#temperature");
+  let temperatureInFahrenheit = parseInt(tempElement.innerHTML);
+  let temperatureInCelsius = ((temperatureInFahrenheit - 32) * 5) / 9;
+  tempElement.innerHTML = `${Math.round(temperatureInCelsius)}`;
 }
 
 let fahr = document.querySelector("#fahrenheit");
-fahr.addEventListener("click", changeFahr);
+fahr.addEventListener("click", changeToFahrenheit);
 
-function changeFahr(event) {
-  let temp = document.querySelector("#temperature");
+function changeToFahrenheit(event) {
   event.preventDefault();
-  temp.innerHTML = ``;
+  let tempElement = document.querySelector("#temperature");
+  let temperatureInCelsius = parseInt(tempElement.innerHTML);
+  let temperatureInFahrenheit = (temperatureInCelsius * 9) / 5 + 32;
+  tempElement.innerHTML = `${Math.round(temperatureInFahrenheit)}`;
 }
 
 function showCity(cityName) {
@@ -74,7 +78,6 @@ function showTemperature(response) {
   let humidity = Math.round(response.data.main.humidity);
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${humidity}`;
-  console.log(response.data.precipitation);
 }
 
 let currentPosition = document.querySelector("#current-button");
