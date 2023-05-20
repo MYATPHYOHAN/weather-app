@@ -17,19 +17,19 @@
   <body>
     <div class="container">
       <h1>Weather Forecast</h1>
-      <form class="search_form" id="search_form">
+      <form class="search-form" id="search-form">
         <div class="row">
           <div class="col-6">
             <input
               type="text"
               class="form-control"
-              id="search_city"
+              id="search-city"
               placeholder="Enter a city name..."
             />
           </div>
           <div class="col-3">
             <input
-              id="search_button"
+              id="search-button"
               type="submit"
               value="Search"
               class="form-control btn btn-primary shadow-sm"
@@ -37,7 +37,7 @@
           </div>
           <div class="col-3">
             <button
-              id="current_button"
+              id="current-button"
               class="form-control btn btn-dark shadow-sm"
             >
               Current
@@ -46,7 +46,7 @@
         </div>
       </form>
       <div class="d-flex flex-column">
-        <h1 id="city_name"></h1>
+        <h1 id="city-name"></h1>
         <h3 id="date"></h3>
         <h4>Today's Weather</h4>
         <h4></h4>
@@ -56,14 +56,29 @@
               <img
                 src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
                 alt="Cloudy icon"
-                class="weather_icon float-left"
+                class="weather-icon float-left"
               />
               <div class="float-left">
-                <span class="temperature" id="temperature"></span
-                ><span class="units">
-                  <a href="#" id="celsius">°C</a> |
-                  <a href="#" id="fahrenheit">°F</a>
-                </span>
+                <span class="temperature" id="temperature"></span>
+                <span
+                  class="units"
+                  style="display: inline"
+                  aria-label="°Celsius"
+                  aria-disabled="true"
+                  role="button"
+                  >°C</span
+                >
+
+                <span class="in-line"></span>
+
+                <span
+                  class="units"
+                  style="display: inline; margin-left: -1px"
+                  aria-label="°Fahrenheit"
+                  aria-disabled="true"
+                  role="button"
+                  >°F</span
+                >
               </div>
             </div>
           </div>

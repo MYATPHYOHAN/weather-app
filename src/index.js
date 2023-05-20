@@ -25,12 +25,12 @@ let todayDate = document.querySelector("h3");
 let curretTime = new Date();
 todayDate.innerHTML = currentDate(curretTime);
 
-let citySearch = document.querySelector("#search_form");
+let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", searchCity);
 
 function searchCity(event) {
-  let cityName = document.querySelector("#search_city");
-  let changeCityName = document.querySelector("#city_name");
+  let cityName = document.querySelector("#search-city");
+  let changeCityName = document.querySelector("#city-name");
   event.preventDefault();
   let inputCityName = cityName.value;
   let fixCityName = inputCityName;
@@ -77,7 +77,7 @@ function showTemperature(response) {
   console.log(response.data.precipitation);
 }
 
-let currentPosition = document.querySelector("#current_button");
+let currentPosition = document.querySelector("#current-button");
 currentPosition.addEventListener("click", currentLocation);
 
 function currentLocation() {

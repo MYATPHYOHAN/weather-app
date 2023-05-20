@@ -1,18 +1,29 @@
 .temperature {
-  color: rgb(33, 33, 33);
-  font-size: 64px;
-  font-weight: 400;
-  line-height: 1;
+  font-family: Google Sans, arial, sans-serif;
+  font-size: 48px;
+  letter-spacing: 0;
+  line-height: 56px;
 }
+
 .units {
-  position: relative;
-  top: -34px;
+  color: black;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 24px;
+  margin-top: 6px;
+  padding-left: 6px;
+  vertical-align: top;
 }
-.weather_icon {
-  height: 64px;
-  width: 64px;
-  margin-right: 10px;
+
+.weather-icon {
+  display: inline-block;
+  height: 55px;
+  margin-top: unset;
+  vertical-align: top;
+  width: 55px;
+  margin-right: 4px;
 }
+
 .float-left {
   float: left !important;
 }
@@ -30,11 +41,18 @@ a {
   text-decoration: none;
 }
 
-#city_name {
+#city-name {
   text-transform: capitalize;
 }
 
 .git-link {
   margin: 0 auto;
   text-align: center;
+}
+
+.in-line {
+  border-left: solid 1px #868b90;
+  margin: 0 5px;
+  font-weight: normal;
+  vertical-align: top;
 }
