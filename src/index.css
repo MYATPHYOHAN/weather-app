@@ -1,5 +1,31 @@
+body {
+  font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: rgb(20, 168, 201);
+  background: linear-gradient(
+    0deg,
+    rgba(20, 168, 201, 1) 30%,
+    rgba(0, 255, 230, 1) 100%
+  );
+  background-repeat: no-repeat;
+  margin: 20px auto;
+  max-width: 75%;
+}
+
+.weather-app {
+  border: 1px solid #dadde1;
+  padding: 15px;
+  margin: 20px auto;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .temperature {
-  font-family: Google Sans, arial, sans-serif;
+  font-family: Quicksand, arial, sans-serif;
   font-size: 48px;
   letter-spacing: 0;
   line-height: 56px;
@@ -8,7 +34,7 @@
 .units {
   color: black;
   display: inline-block;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 24px;
   margin-top: 6px;
   padding-left: 6px;
@@ -36,11 +62,6 @@
   max-width: 600px;
 }
 
-a {
-  color: gray;
-  text-decoration: none;
-}
-
 #city-name {
   text-transform: capitalize;
 }
@@ -48,6 +69,16 @@ a {
 .git-link {
   margin: 0 auto;
   text-align: center;
+  color: #fff;
+  font-family: Quicksand, arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1rem;
+}
+.git-link a {
+  color: gold;
+  text-decoration: none;
 }
 
 .in-line {
@@ -55,4 +86,9 @@ a {
   margin: 0 5px;
   font-weight: normal;
   vertical-align: top;
+}
+
+#search-button,
+#current-button {
+  font-family: Quicksand, arial, sans-serif;
 }

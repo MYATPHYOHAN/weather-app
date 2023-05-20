@@ -13,13 +13,19 @@
     />
     <link href="src/index.css" rel="stylesheet" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&family=Google+Sans&family=Roboto:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1>Weather Forecast</h1>
+    <div class="weather-app">
+      <h1 class="mb-3">Weather Forecast</h1>
       <form class="search-form" id="search-form">
-        <div class="row">
-          <div class="col-6">
+        <div class="d-flex mb-3">
+          <div class="col-6 flex-fill">
             <input
               type="text"
               class="form-control"
@@ -27,7 +33,7 @@
               placeholder="Enter a city name..."
             />
           </div>
-          <div class="col-3">
+          <div class="col-2 flex-fill mx-2">
             <input
               id="search-button"
               type="submit"
@@ -35,7 +41,7 @@
               class="form-control btn btn-primary shadow-sm"
             />
           </div>
-          <div class="col-3">
+          <div class="col-2 flex-fill">
             <button
               id="current-button"
               class="form-control btn btn-dark shadow-sm"
