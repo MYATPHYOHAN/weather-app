@@ -1,21 +1,20 @@
-function formatDate(timestamp) {
-  let date = new Date(timestamp * 1000);
+function formatDate(timestamp, timezone) {
+  const date = new Date(timestamp * 1000);
+  const timezoneOffset = timezone / 60;
+  date.setMinutes(date.getMinutes() + timezoneOffset);
 
-  let options = {
+  const options = {
     weekday: "long",
     hour: "numeric",
     minute: "numeric",
     hour12: false,
-    timezon: "",
+    timeZone: "UTC",
   };
 
-  let formattedDate = date.toLocaleString("en-US", options);
-
+  const formattedDate = date.toLocaleString("en-US", options);
+  console.log(formattedDate);
   return formattedDate;
 }
-
-let citySearch = document.querySelector("#search-form");
-citySearch.addEventListener("submit", searchCity);
 
 function searchCity(event) {
   let cityName = document.querySelector("#search-city");
@@ -43,8 +42,8 @@ function displayCelsiusTemperature(event) {
 }
 
 function showCity(cityName) {
-  let apiKey = `3td6e14f0d9a0b3a55fb9a3b44ao245f`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
+  let apiKey = `de04c4af2d4eee11197de9665865f645`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
 
@@ -57,15 +56,21 @@ function showTemperature(response) {
   let todayDateElement = document.querySelector("#date");
   let cityElement = document.querySelector("#city-name");
   let iconElement = document.querySelector("#icon");
-  celsiusTemperature = Math.round(response.data.temperature.current);
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  celsiusTemperature = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
   windSpeedElement.innerHTML = Math.round(response.data.wind.speed * 0.514);
-  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
-  descriptionElement.innerHTML = response.data.condition.description;
-  todayDateElement.innerHTML = formatDate(response.data.time);
-  cityElement.innerHTML = `${response.data.city}`;
-  iconElement.setAttribute("src", response.data.condition.icon_url);
-  iconElement.setAttribute("alt", response.data.condition.icon);
+  humidityElement.innerHTML = Math.round(response.data.main.humidity);
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  todayDateElement.innerHTML = formatDate(
+    response.data.dt,
+    response.data.timezone
+  );
+  cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+  iconElement.setAttribute(
+    "src",
+    `/images/${response.data.weather[0].icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 async function loadCountryCodes() {
@@ -91,8 +96,8 @@ function handleLocation(location) {
 }
 
 function userLocation(lat, lon) {
-  let apiKey = `3td6e14f0d9a0b3a55fb9a3b44ao245f`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  let apiKey = `de04c4af2d4eee11197de9665865f645`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lon=${lon}&lat=${lat}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(showTemperature);
 }
 
@@ -103,5 +108,8 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let citySearch = document.querySelector("#search-form");
+citySearch.addEventListener("submit", searchCity);
 
 currentLocation();
