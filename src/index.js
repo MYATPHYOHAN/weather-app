@@ -1,15 +1,12 @@
-function formatDate(timestamp, timezone) {
+function formatDate(timestamp) {
   let date = new Date(timestamp * 1000);
-  let timezoneOffsetMinutes = timezone / 60;
-
-  date.setMinutes(date.getMinutes() + timezoneOffsetMinutes);
 
   let options = {
     weekday: "long",
     hour: "numeric",
     minute: "numeric",
-    hour12: true,
-    timeZone: "UTC",
+    hour12: false,
+    timezon: "",
   };
 
   let formattedDate = date.toLocaleString("en-US", options);
@@ -27,31 +24,27 @@ function searchCity(event) {
   console.log(cityName.value);
 }
 
-let cel = document.querySelector("#celsius");
-cel.addEventListener("click", changeToCelsius);
-
-function changeToCelsius(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let tempElement = document.querySelector("#temperature");
-  let temperatureInFahrenheit = parseInt(tempElement.innerHTML);
-  let temperatureInCelsius = ((temperatureInFahrenheit - 32) * 5) / 9;
-  tempElement.innerHTML = `${Math.round(temperatureInCelsius)}`;
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
 }
 
-let fahr = document.querySelector("#fahrenheit");
-fahr.addEventListener("click", changeToFahrenheit);
-
-function changeToFahrenheit(event) {
+function displayCelsiusTemperature(event) {
   event.preventDefault();
-  let tempElement = document.querySelector("#temperature");
-  let temperatureInCelsius = parseInt(tempElement.innerHTML);
-  let temperatureInFahrenheit = (temperatureInCelsius * 9) / 5 + 32;
-  tempElement.innerHTML = `${Math.round(temperatureInFahrenheit)}`;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 function showCity(cityName) {
-  let apiKey = `de04c4af2d4eee11197de9665865f645`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric`;
+  let apiKey = `3td6e14f0d9a0b3a55fb9a3b44ao245f`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=metric`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
 
@@ -63,25 +56,16 @@ function showTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let todayDateElement = document.querySelector("#date");
   let cityElement = document.querySelector("#city-name");
-
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  windSpeedElement.innerHTML = Math.round(response.data.wind.speed / 3.6);
-  humidityElement.innerHTML = Math.round(response.data.main.humidity);
-  descriptionElement.innerHTML = response.data.weather[0].description;
-  todayDateElement.innerHTML = formatDate(
-    response.data.dt,
-    response.data.timezone
-  );
-
-  loadCountryCodes()
-    .then((countryCodes) => {
-      const countryName = countryCodes[response.data.sys.country] || "Unknown";
-      cityElement.innerHTML = `${response.data.name}, ${countryName}`;
-    })
-    .catch((error) => {
-      console.log("Error loading country codes:", error);
-      cityElement.innerHTML = `${response.data.name}, Unknown`;
-    });
+  let iconElement = document.querySelector("#icon");
+  celsiusTemperature = Math.round(response.data.temperature.current);
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  windSpeedElement.innerHTML = Math.round(response.data.wind.speed * 0.514);
+  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
+  descriptionElement.innerHTML = response.data.condition.description;
+  todayDateElement.innerHTML = formatDate(response.data.time);
+  cityElement.innerHTML = `${response.data.city}, ${response.data.country}`;
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  iconElement.setAttribute("alt", response.data.condition.icon);
 }
 
 async function loadCountryCodes() {
@@ -107,9 +91,17 @@ function handleLocation(location) {
 }
 
 function userLocation(lat, lon) {
-  let apiKey = `de04c4af2d4eee11197de9665865f645`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let apiKey = `3td6e14f0d9a0b3a55fb9a3b44ao245f`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(showTemperature);
 }
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 currentLocation();
