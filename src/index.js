@@ -18,8 +18,8 @@ function formatDate(timestamp, timezone) {
 function searchCity(event) {
   let cityName = document.querySelector("#search-city");
   event.preventDefault();
-  showCity(cityName.value);
-  console.log(cityName.value);
+  showCity(cityName.value.trim());
+  console.log(cityName.value.trim());
 }
 
 function displayFahrenheitTemperature(event) {

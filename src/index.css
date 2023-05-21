@@ -169,3 +169,17 @@ body {
     width: 60% !important;
   }
 }
+
+@media screen and (min-width: 400px) {
+  .right-view {
+    width: 35% !important;
+  }
+
+  .right-view ul {
+    padding: 0;
+  }
+
+  .left-view {
+    width: 65% !important;
+  }
+}
