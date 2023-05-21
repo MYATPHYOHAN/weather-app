@@ -7,11 +7,10 @@ function formatDate(timestamp, timezone) {
     weekday: "long",
     hour: "numeric",
     minute: "numeric",
-    hour12: false,
     timeZone: "UTC",
   };
 
-  const formattedDate = date.toLocaleString("en-US", options);
+  const formattedDate = date.toLocaleString("en-GB", options);
   console.log(formattedDate);
   return formattedDate;
 }
