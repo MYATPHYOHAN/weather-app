@@ -63,7 +63,7 @@ function showTemperature(response) {
   humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
   descriptionElement.innerHTML = response.data.condition.description;
   todayDateElement.innerHTML = formatDate(response.data.time);
-  cityElement.innerHTML = `${response.data.city}, ${response.data.country}`;
+  cityElement.innerHTML = `${response.data.city}`;
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.icon);
 }
