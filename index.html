@@ -21,7 +21,7 @@
     />
   </head>
   <body>
-    <div class="weather-app">
+    <div class="weather-app" id="weather-app">
       <h1 class="mb-3">Weather Forecast</h1>
       <form class="search-form" id="search-form">
         <div class="d-flex mb-3">
@@ -68,11 +68,22 @@
             <div class="col-6 right-view">
               <div>
                 <ul style="list-style: none">
-                  <li>Humidity: <span id="humidity">--</span>%</li>
-                  <li>Wind: <span id="windspeed">--</span>m/s</li>
+                  <li>
+                    <img
+                      class="small-icon"
+                      src="/images/humidity.png"
+                      width="15"
+                    />
+                    Humidity: <span id="humidity">--</span>%
+                  </li>
+                  <li>
+                    <img class="small-icon" src="/images/wind.png" width="15" />
+                    Wind: <span id="windspeed">--</span>m/s
+                  </li>
                 </ul>
               </div>
             </div>
+            <div class="weather-daily-forecast" id="forecast"></div>
           </div>
         </div>
       </div>

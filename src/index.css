@@ -11,14 +11,12 @@ body {
   margin: 20px auto;
   border-radius: 16px;
   border: 1px solid #dadde1;
-  background: rgb(140, 96, 149);
-  background: linear-gradient(
-    0deg,
-    rgba(140, 96, 149, 1) 30%,
-    rgba(78, 67, 136, 1) 60%,
-    rgba(26, 38, 96, 1) 100%
-  );
+  background: linear-gradient(to bottom, #51b7fb, #a9d1f8 60%);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.night {
+  background: linear-gradient(to bottom, #000428, #004e92 60%);
 }
 
 .temperature {
@@ -77,8 +75,9 @@ body {
   line-height: 1rem;
 }
 .git-link a {
-  color: blue;
+  color: goldenrod;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .in-line {
@@ -158,6 +157,24 @@ body {
 
 @media screen and (max-width: 400px) {
   .right-view {
+    width: 45% !important;
+  }
+
+  .right-view ul {
+    padding: 0;
+  }
+
+  .left-view {
+    width: 55% !important;
+  }
+
+  .col {
+    width: 45px !important;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .right-view {
     width: 40% !important;
   }
 
@@ -168,18 +185,47 @@ body {
   .left-view {
     width: 60% !important;
   }
+  .col {
+    width: 30px !important;
+  }
 }
 
-@media screen and (min-width: 400px) {
-  .right-view {
-    width: 35% !important;
-  }
+.weather-daily-forecast {
+  text-align: center;
+  margin: 20px 0;
+}
 
-  .right-view ul {
-    padding: 0;
-  }
+.weather-daily-forecast-date {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
 
-  .left-view {
-    width: 65% !important;
-  }
+.weather-daily-forecast-temperature {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.temp-min {
+  opacity: 0.7;
+}
+
+.col {
+  border-radius: 12px;
+  border: 1px solid transparent;
+  padding: 20px 5px;
+  width: 60px;
+  margin: 0 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.col:hover {
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.small-icon {
+  position: relative;
+  margin-top: -3px;
+  margin-right: 3px;
 }

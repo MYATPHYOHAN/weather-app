@@ -11,7 +11,6 @@ function formatDate(timestamp, timezone) {
   };
 
   const formattedDate = date.toLocaleString("en-GB", options);
-  console.log(formattedDate);
   return formattedDate;
 }
 
@@ -19,7 +18,6 @@ function searchCity(event) {
   let cityName = document.querySelector("#search-city");
   event.preventDefault();
   showCity(cityName.value.trim());
-  console.log(cityName.value.trim());
 }
 
 function displayFahrenheitTemperature(event) {
@@ -47,7 +45,7 @@ function showCity(cityName) {
 }
 
 function showTemperature(response) {
-  console.log(response.data);
+  forecastweather(response.data.coord.lat, response.data.coord.lon);
   let temperatureElement = document.querySelector("#temperature");
   let windSpeedElement = document.querySelector("#windspeed");
   let humidityElement = document.querySelector("#humidity");
@@ -83,21 +81,85 @@ async function loadCountryCodes() {
   }
 }
 
+function displayforecast(response) {
+  let displayforecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let forecast = response.data.daily;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      let currentDate = new Date();
+      currentDate.setDate(
+        currentDate.getDate() + forecast.indexOf(forecastDay) + 1
+      );
+      let nextDate = days[currentDate.getDay()];
+      const iconMappings = {
+        "clear-sky-day": "01d",
+        "few-clouds-day": "02d",
+        "scattered-clouds-day": "03d",
+        "broken-clouds-day": "04d",
+        "shower-rain-day": "09d",
+        "rain-day": "10d",
+        "thunderstorm-day": "11d",
+        "snow-day": "13d",
+        "mist-day": "50d",
+      };
+
+      let icon = forecastDay.condition.icon;
+      if (iconMappings.hasOwnProperty(icon)) {
+        icon = iconMappings[icon];
+      }
+
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
+        <div class="weather-daily-forecast-date">${nextDate}</div>
+            <img src="${`/images/${icon}.png`}" alt=" " width="45" />
+                <div class="weather-daily-forecast-temperature">
+                  <span class="temp-max">${Math.round(
+                    forecastDay.temperature.maximum
+                  )}°</span> 
+                  <span class="temp-min">${Math.round(
+                    forecastDay.temperature.minimum
+                  )}°</span>
+                </div>
+          </div>`;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  displayforecastElement.innerHTML = forecastHTML;
+}
+
 function currentLocation() {
   navigator.geolocation.getCurrentPosition(handleLocation);
 }
 
 function handleLocation(location) {
-  console.log(location);
   let lat = location.coords.latitude;
   let lon = location.coords.longitude;
   userLocation(lat, lon);
+  forecastweather(lat, lon);
 }
 
 function userLocation(lat, lon) {
   let apiKey = `de04c4af2d4eee11197de9665865f645`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lon=${lon}&lat=${lat}&appid=${apiKey}&units=metric`;
   axios.get(`${apiUrl}`).then(showTemperature);
+}
+
+function forecastweather(lat, lon) {
+  let sheCodeAPIKey = `3td6e14f0d9a0b3a55fb9a3b44ao245f`;
+  let sheCodeAPIUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${sheCodeAPIKey}&units=metric`;
+  axios.get(`${sheCodeAPIUrl}`).then(displayforecast);
+}
+
+const currentHour = new Date().getHours();
+
+const isNight = currentHour >= 20 || currentHour < 6;
+
+if (isNight) {
+  let weatherApp = document.querySelector("#weather-app");
+  weatherApp.classList.add("night");
 }
 
 let celsiusTemperature = null;
