@@ -65,7 +65,7 @@ function showTemperature(response) {
   cityElement.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   iconElement.setAttribute(
     "src",
-    `/images/${response.data.weather[0].icon}.png`
+    `/images/${response.data.weather[0].icon}.svg`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
@@ -114,7 +114,7 @@ function displayforecast(response) {
         forecastHTML +
         `<div class="col">
         <div class="weather-daily-forecast-date">${nextDate}</div>
-            <img src="${`/images/${icon}.png`}" alt=" " width="45" />
+            <img src="${`/images/${icon}.svg`}" alt=" " width="45" />
                 <div class="weather-daily-forecast-temperature">
                   <span class="temp-max">${Math.round(
                     forecastDay.temperature.maximum
@@ -156,10 +156,19 @@ function forecastweather(lat, lon) {
 const currentHour = new Date().getHours();
 
 const isNight = currentHour >= 20 || currentHour < 6;
-
+const weatherApp = document.querySelector("#weather-app");
+const inputElement = document.querySelector(".cu-sf");
+const buttonElement = document.querySelector("#search-button");
 if (isNight) {
-  let weatherApp = document.querySelector("#weather-app");
   weatherApp.classList.add("night");
+  weatherApp.classList.remove("day");
+  inputElement.classList.add("txt-night");
+  buttonElement.classList.remove("dark");
+} else {
+  weatherApp.classList.add("day");
+  weatherApp.classList.remove("night");
+  inputElement.classList.remove("txt-night");
+  buttonElement.classList.add("dark");
 }
 
 let celsiusTemperature = null;
