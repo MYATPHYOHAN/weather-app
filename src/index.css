@@ -173,6 +173,7 @@ body {
 
   .left-view {
     width: 60% !important;
+    font-size: medium;
   }
 
   .col {
@@ -187,10 +188,12 @@ body {
 
   .right-view ul {
     padding: 0;
+    font-size: small;
   }
 
   .left-view {
     width: 60% !important;
+    font-size: medium;
   }
   .col {
     width: 30px !important;
