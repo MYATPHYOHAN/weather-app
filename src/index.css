@@ -39,13 +39,8 @@ body {
 
 .units {
   display: inline-block;
-  padding-left: 6px;
   opacity: 0.5;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
   position: relative;
-  font-size: 16px;
   top: 4px;
 }
 .active {
@@ -168,15 +163,16 @@ body {
 
 @media screen and (max-width: 400px) {
   .right-view {
-    width: 45% !important;
+    width: 40% !important;
   }
 
   .right-view ul {
     padding: 0;
+    font-size: small;
   }
 
   .left-view {
-    width: 55% !important;
+    width: 60% !important;
   }
 
   .col {
@@ -238,4 +234,5 @@ body {
 .small-icon {
   position: relative;
   margin-top: -3px;
+  margin-right: -3px;
 }

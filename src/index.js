@@ -116,12 +116,16 @@ function displayforecast(response) {
         <div class="weather-daily-forecast-date">${nextDate}</div>
             <img src="${`/images/${icon}.svg`}" alt=" " width="45" />
                 <div class="weather-daily-forecast-temperature">
-                  <span class="temp-max">${Math.round(
-                    forecastDay.temperature.maximum
-                  )}°</span> 
-                  <span class="temp-min">${Math.round(
-                    forecastDay.temperature.minimum
-                  )}°</span>
+                  <span class="temp-max"><img
+                    class="small-icon"
+                    src="/images/thermometer-warmer.svg"
+                    width="36"
+                />${Math.round(forecastDay.temperature.maximum)}°</span> 
+                  <span class="temp-min"><img
+                    class="small-icon"
+                    src="/images/thermometer-colder.svg"
+                    width="36"
+                />${Math.round(forecastDay.temperature.minimum)}°</span>
                 </div>
           </div>`;
     }
